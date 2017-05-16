@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>myECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="js/echarts.js"></script>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 800px;height:600px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                 text:'用户访问来源',
+				 subtext:'纯属捏造，如有雷同，人品爆发。',
+				 x: 'center'
+			},	
+			
+            tooltip: {
+				show: true,
+				trigger: 'itme',
+				formatter: "{a} <br/> {b} : {c} ({d}%)" 
+			
+			},
+            legend: {
+                orient: 'vertical',
+				left: 'left',
+				data: ['直接访问', '邮件营销', '视频广告', '联盟广告', '搜索引擎']
+            },
+            
+            series: [
+				{
+					name: '访问来源',
+					type: 'pie',
+					radius: '55%',
+					center: ['50%', '60%'],
+					data: [
+						{value:335, name:'直接访问'},
+						{value:310, name:'邮件营销'},
+						{value:234, name:'视频广告'},
+						{value:135, name:'联盟广告'},
+						{value:1024, name:'搜索引擎'}
+					],
+					
+					
+				}
+			]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+</html>
+
+
+<!--
+
+/**
+ * Export echarts as CommonJS module
+ */
+module.exports = require('./lib/echarts');
+
+// Import all charts and components
+require('./lib/chart/line');
+require('./lib/chart/bar');
+require('./lib/chart/pie');
+require('./lib/chart/scatter');
+require('./lib/chart/radar');
+
+require('./lib/chart/map');
+require('./lib/chart/treemap');
+require('./lib/chart/graph');
+require('./lib/chart/gauge');
+require('./lib/chart/funnel');
+require('./lib/chart/parallel');
+require('./lib/chart/sankey');
+require('./lib/chart/boxplot');
+require('./lib/chart/candlestick');
+require('./lib/chart/effectScatter');
+require('./lib/chart/lines');
+require('./lib/chart/heatmap');
+require('./lib/chart/pictorialBar');
+require('./lib/chart/themeRiver');
+
+require('./lib/component/graphic');
+require('./lib/component/grid');
+require('./lib/component/legend');
+require('./lib/component/tooltip');
+require('./lib/component/polar');
+require('./lib/component/geo');
+require('./lib/component/parallel');
+require('./lib/component/singleAxis');
+require('./lib/component/brush');
+require('./lib/component/calendar');
+
+require('./lib/component/title');
+
+require('./lib/component/dataZoom');
+require('./lib/component/visualMap');
+
+require('./lib/component/markPoint');
+require('./lib/component/markLine');
+require('./lib/component/markArea');
+
+require('./lib/component/timeline');
+require('./lib/component/toolbox');
+
+require('zrender/lib/vml/vml');
+
+图表类型3.x版本(2.x版本支持的图表不一样)
+Line - 折线（面积）图
+Lines - 线图
+Bar - 柱状（条形）图
+Scatter - 散点（气泡）图
+EffectScatter - 涟漪效果散点图
+Candlestick - K线图
+Pie - 饼（圆环）图
+Graph - 关系图,可以实现force
+Map - 地图
+Gauge - 仪表盘
+Funnel - 漏斗图
+Treemap - 矩形树图
+Heatmap - 热力图
+Boxplot - 箱形图
+Parallel - 平行坐标系
+Sankey - 桑基图
+
+
+ECharts组件
+
+Axis - 坐标轴
+Grid - 网格
+Title - 标题
+Tooltip - 提示
+Legend - 图例
+DataZoom - 数据区域缩放
+DataRange - 值域漫游
+Toolbox - 工具箱
+Timeline - 时间线
+visualMap - 视觉映射组件
+
+3.0版本去掉了k(改为candlestick),radar(雷达图),chord(和弦图),force(使用graph,layout=force替代),island(孤岛),eventRiver(事件河流图),venn(韦恩图),wordCloud(词云),Tree(树图)
+
+3.0版本新增了lines(线图),effectScatter(涟漪效果散点图),candlestick(新的k线图),graph(关系图,可以实现force),boxplot(箱形图),parallel(平行坐标系),sankey(桑基图)
+
+ -->

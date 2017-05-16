@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>myECharts</title>
+	
+    <!-- 引入 echarts.js -->
+    <script src="js/echarts.js"></script>
+	<script src="js/echarts-liquidfill.js"></script>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 100%; height: 600px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+		
+// ECharts 水球图插件，需要额外插件脚本，参见上方“脚本”
+// 完整配置参数参见：https://github.com/ecomfe/echarts-liquidfill
+
+option = {
+    title: {
+        text: '基 本 水 球 图',
+		left: 'center',
+		top: '10%'
+    },
+    series: [{
+        type: 'liquidFill',
+		radius: '60%',
+        data: [0.5, 0.41],
+		outline: {
+			show: false
+		},
+    }],
+	
+	
+};
+
+		
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+		
+    </script>
+</body>
+</html>
+
+

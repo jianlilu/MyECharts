@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>myECharts</title>
+	
+    <!-- 引入 echarts.js -->
+    <script src="js/echarts.js"></script>
+	<script src="js/echarts-liquidfill.js"></script>
+</head>
+<body>
+
+<style>
+	.chart {
+		width: 700px; 
+		height: 500px;
+	    float: left;
+	}
+
+</style>
+
+	<h3 style="text-align: center">基 本 水 球 图</h3>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div class="chart" ></div>
+	<div class="chart" ></div>
+
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var containers = document.getElementsByClassName('chart');
+		
+// ECharts 水球图插件，需要额外插件脚本，参见上方“脚本”
+// 完整配置参数参见：https://github.com/ecomfe/echarts-liquidfill
+
+options = [ 
+	
+	{
+		series: [{
+			type: 'liquidFill',
+			radius: '60%',//球的大小
+			data: [0.5, 0.41],//波浪的百分比
+			outline: {
+				show: false//是否显示球的外边框
+			},
+		}]
+	},
+	
+	{
+	  series: [{
+			type: 'liquidFill',
+			data: [0.5, 0.4, 0.3],
+			color: ['red', '#0f0', 'rgb(0, 0, 255)'],//波浪的红蓝绿三种颜色
+			outline: {
+				show: false
+			},
+			itemStyle: {
+				normal: {
+					opacity: 0.2 //图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形。
+				},
+				emphasis: {
+					opacity: 0.9  //图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形。
+				}
+			}
+	  }]
+	}
+	
+	
+];
+
+			var charts = [];
+            for (var i = 0; i < options.length; ++i) {
+                var chart = echarts.init(containers[i]);
+                chart.setOption(options[i]);// 循环遍历和显示所有水球
+                charts.push(chart);
+            }
+
+			setInterval(update, 3000); //每隔3秒随机更新水球的百分比显示
+			
+			function update() {
+                var data = [];
+                var last = 1;
+                for (var i = 0; i < 4; ++i) {
+                    last = Math.floor(last * (Math.random() * 0.5 + 0.5)
+                        * 100) / 100;
+                    data.push(last);
+                }
+                charts[1].setOption({
+                    series: [{
+                        data: data
+                    }]
+                });
+            }
+           
+    </script>
+</body>
+</html>
+
+
